@@ -28,12 +28,12 @@ RUN curl -fL https://github.com/krallin/tini/releases/download/v0.5.0/tini-stati
 COPY init.groovy /usr/share/jenkins/ref/init.groovy.d/tcp-slave-agent-port.groovy
 
 #openssl sha1 /Users/myaccount/Documents/1024SecUpd2003-03-03.dmg
-ENV JENKINS_VERSION 1.609.3
-ENV JENKINS_SHA f5ad5f749c759da7e1a18b96be5db974f126b71e
+ENV JENKINS_VERSION 1.616
+ENV JENKINS_SHA 56b2c0a5983aad7f3cae05de0fbfb743a17c68a4
 
 # could use ADD but this one does not check Last-Modified header 
 # see https://github.com/docker/docker/issues/8331
-RUN curl -fL http://mirrors.jenkins-ci.org/war-stable/$JENKINS_VERSION/jenkins.war -o /usr/share/jenkins/jenkins.war \
+RUN curl -fL http://mirrors.jenkins-ci.org/war/$JENKINS_VERSION/jenkins.war -o /usr/share/jenkins/jenkins.war \
   && echo "$JENKINS_SHA /usr/share/jenkins/jenkins.war" | sha1sum -c -
 
 ENV JENKINS_UC https://updates.jenkins-ci.org
